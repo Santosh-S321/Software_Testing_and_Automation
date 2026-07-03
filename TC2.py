@@ -1,7 +1,10 @@
+# Test Case: Verify that a user can login with valid credentials
+
+import unittest
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-import unittest
-import time
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 class LoginTest(unittest.TestCase):
 
@@ -13,28 +16,30 @@ class LoginTest(unittest.TestCase):
         driver = self.driver
 
         # Open the login page
-        driver.get("https://example.com/login")
+        driver.get("https://the-internet.herokuapp.com/login")
 
         # Enter valid username
-        driver.find_element(By.ID, "username").send_keys("testuser")
+        driver.find_element(By.ID, "username").send_keys("tomsmith")
 
         # Enter valid password
-        driver.find_element(By.ID, "password").send_keys("password123")
+        driver.find_element(By.ID, "password").send_keys("SuperSecretPassword!")
 
         # Click the Login button
-        driver.find_element(By.ID, "loginButton").click()
+        driver.find_element(By.CSS_SELECTOR, "button[type='submit']").click()
 
-        # Wait for the page to load
-        time.sleep(3)
+        # Wait until the success message is visible
+        WebDriverWait(driver, 10).until(
+            EC.visibility_of_element_located((By.ID, "flash"))
+        )
 
         # Verify successful login
-        expected_title = "Dashboard"
-        self.assertEqual(driver.title, expected_title)
+        success_message = driver.find_element(By.ID, "flash").text
+        self.assertIn("You logged into a secure area!", success_message)
 
-        print("✅ Login Test Passed")
+        print("Login Test Passed")
 
     def tearDown(self):
         self.driver.quit()
 
 if __name__ == "__main__":
-    unittest.main()
+    unittest.main(verbosity=2)
