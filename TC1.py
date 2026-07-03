@@ -1,42 +1,39 @@
+# Test Case: Open a Website and verify the Title
 import unittest
 from selenium import webdriver
-from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 
-
-class ManualLoginTest(unittest.TestCase):
+class WebsiteTitleTest(unittest.TestCase):
 
     def setUp(self):
+        # Launch Chrome browser
         self.driver = webdriver.Chrome()
         self.driver.maximize_window()
 
-    def test_manual_login(self):
+    def test_website_title(self):
         driver = self.driver
 
-        # Open the dummy login page
-        driver.get("https://the-internet.herokuapp.com/login")
+        # Open the website
+        driver.get("https://the-internet.herokuapp.com")
 
-        print("\nEnter the credentials manually:")
-        print("Username: tomsmith")
-        print("Password: SuperSecretPassword!")
-        input("After logging in successfully, press Enter to continue...")
-
-        # Verify successful login
-        success_message = WebDriverWait(driver, 10).until(
-            EC.visibility_of_element_located((By.ID, "flash"))
+        # Wait until the page title is loaded
+        WebDriverWait(driver, 10).until(
+            lambda d: d.title != ""
         )
 
-        self.assertIn(
-            "You logged into a secure area!",
-            success_message.text
-        )
+        # Expected title
+        expected_title = "The Internet"
 
-        print("✅ Test Passed: User logged in successfully.")
+        # Verify the title
+        self.assertEqual(driver.title, expected_title)
+
+        print("Expected Title:", expected_title)
+        print("Actual Title:", driver.title)
+        print("Test Passed: Website title is correct.")
 
     def tearDown(self):
+        # Close the browser
         self.driver.quit()
 
-
 if __name__ == "__main__":
-    unittest.main()
+    unittest.main(verbosity=2)
