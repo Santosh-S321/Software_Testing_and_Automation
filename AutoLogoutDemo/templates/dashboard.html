@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Dashboard</title>
+
+<script>
+
+let timer;
+
+function logout(){
+
+window.location="/logout";
+
+}
+
+function resetTimer(){
+
+clearTimeout(timer);
+
+timer=setTimeout(logout,30000);
+
+}
+
+window.onload=resetTimer;
+
+document.onmousemove=resetTimer;
+document.onkeypress=resetTimer;
+document.onclick=resetTimer;
+document.onscroll=resetTimer;
+
+</script>
+
+</head>
+
+<body>
+
+<h1>Welcome Admin</h1>
+
+<p>
+You will be logged out automatically after
+<b>30 seconds</b>
+of inactivity.
+</p>
+
+</body>
+
+</html>
