@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Employee Records</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 30px; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #ddd; padding: 6px 10px; text-align: left; }
+        th { background: #2c3e50; color: #fff; }
+        tr:nth-child(even) { background: #f7f7f7; }
+    </style>
+</head>
+<body>
+    <h1>Employee Records</h1>
+    <table id="employees">
+        <thead>
+            <tr>
+                <th>Emp ID</th>
+                <th>Name</th>
+                <th>Department</th>
+                <th>Experience</th>
+                <th>Salary</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for emp in employees %}
+            <tr class="employee">
+                <td class="emp-id">{{ emp.emp_id }}</td>
+                <td class="name">{{ emp.name }}</td>
+                <td class="department">{{ emp.department }}</td>
+                <td class="experience">{{ emp.experience }}</td>
+                <td class="salary">Rs.{{ emp.salary }}</td>
+                <td class="status">{{ emp.status }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
