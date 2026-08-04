@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>ShopNova - Cart</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 30px; background: #f7f7f7; }
+        h2 { color: #2c3e50; }
+        table { border-collapse: collapse; width: 100%; background: #fff; }
+        th, td { border: 1px solid #ddd; padding: 10px 14px; text-align: left; }
+        th { background: #f0f0f0; }
+        .num { text-align: right; }
+        .bill {
+            margin-top: 20px; background: #fff; border: 1px solid #ddd;
+            border-radius: 8px; padding: 15px; width: 340px;
+        }
+        .bill p { margin: 8px 0; }
+        .bill .grand { font-size: 18px; font-weight: bold; color: #e74c3c; border-top: 1px solid #ddd; padding-top: 10px; }
+        a { color: #3498db; }
+    </style>
+</head>
+<body>
+    <h1>Your Shopping Cart</h1>
+
+    {% if empty %}
+        <p>Your cart is empty. <a href="/">Continue Shopping</a></p>
+    {% else %}
+    <table>
+        <thead>
+            <tr><th>Product</th><th>Unit Price</th><th>Qty</th><th>Line Total</th></tr>
+        </thead>
+        <tbody>
+        {% for name, price, qty in items %}
+            <tr>
+                <td>{{ name }}</td>
+                <td class="num">&#8377;{{ '%.2f'|format(price) }}</td>
+                <td>{{ qty }}</td>
+                <td class="num">&#8377;{{ '%.2f'|format(price * qty) }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="bill">
+        <p>Total Price (Subtotal): <span id="subtotal">&#8377;{{ '%.2f'|format(bill.subtotal) }}</span></p>
+        <p>Discount: <span id="discount">&#8377;{{ '%.2f'|format(bill.discount) }}</span></p>
+        <p>GST (18%): <span id="gst">&#8377;{{ '%.2f'|format(bill.gst) }}</span></p>
+        <p>Shipping: <span id="shipping">&#8377;{{ '%.2f'|format(bill.shipping) }}</span></p>
+        <p class="grand">Final Amount: <span id="final-amount">&#8377;{{ '%.2f'|format(bill.final_amount) }}</span></p>
+    </div>
+
+    <p><a href="/">Continue Shopping</a> | <a href="/clear">Clear Cart</a></p>
+    {% endif %}
+</body>
+</html>
