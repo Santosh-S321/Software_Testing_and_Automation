@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>E-Commerce Cart Test Report</title>
+<style>
+body { font-family: Arial, sans-serif; margin: 30px; background: #f7f7f7; }
+h1, h2 { color: #2c3e50; }
+table { border-collapse: collapse; background: #fff; }
+th, td { border: 1px solid #ddd; padding: 8px 14px; text-align: left; }
+th { background: #f0f0f0; }
+.banner { padding: 12px 16px; border-radius: 6px; font-weight: bold; color: #fff; width: 400px; }
+.pass { background: #27ae60; }
+.fail { background: #e74c3c; }
+</style>
+</head>
+<body>
+<h1>E-Commerce Cart Bill Verification Report</h1>
+<div class="banner pass">TEST STATUS: PASS</div>
+
+<h2>Products Added to Cart</h2>
+<table>
+<tr><th>Product</th><th>Price (read from webpage)</th></tr>
+<tr><td>Wireless Mouse</td><td>&#8377;799.00</td></tr><tr><td>Mechanical Keyboard</td><td>&#8377;2499.00</td></tr><tr><td>USB-C Hub</td><td>&#8377;1299.00</td></tr>
+</table>
+
+<h2>Bill Breakdown</h2>
+<table>
+<tr><th>Field</th><th>Calculated (python)</th><th>Displayed (webpage)</th><th>Result</th></tr>
+<tr><td>Total Price (Subtotal)</td><td>&#8377;4597.00</td><td>&#8377;4597.00</td><td><span style='color:green'>PASS</span></td></tr><tr><td>Discount</td><td>&#8377;459.70</td><td>&#8377;459.70</td><td><span style='color:green'>PASS</span></td></tr><tr><td>GST</td><td>&#8377;744.71</td><td>&#8377;744.71</td><td><span style='color:green'>PASS</span></td></tr><tr><td>Shipping</td><td>&#8377;0.00</td><td>&#8377;0.00</td><td><span style='color:green'>PASS</span></td></tr><tr><td>Final Amount</td><td>&#8377;4882.01</td><td>&#8377;4882.01</td><td><span style='color:green'>PASS</span></td></tr>
+</table>
+
+<p>No screenshot taken</p>
+</body>
+</html>
